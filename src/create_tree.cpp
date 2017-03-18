@@ -50,12 +50,10 @@ CNode** find(CNode**root, int v) {
     while (*root) {
         if ((*root)->val == v) {
             return root;
-        }
-        else {
+        } else {
             if ((*root)->val < v) {
                 root = &(*root)->right;
-            }
-            else {
+            } else {
                 root = &(*root)->left;
             }
         }
