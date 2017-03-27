@@ -1,17 +1,48 @@
-#include <stack>
-#include "massive.h"
-int* Multipl(int*a, int n) {
-   int* res = new int[n];
-   int* tmp = new int[n-1];
-   tmp[0] = a[1];
-   for (int i = 1; i < n - 2; ++i)
-       tmp[i] = tmp[i - 1] * a[i];
-   int mul = 1;
-   for (int i = n; i >0; --i) {
-       res[i] = tmp[i]*mul;
-       mul *= a[i];
+#include "field.h"
+char* FindWay(int x, int y) {
+    char*  way = new char[100];
+    int ax = 0;
+    int ay = 0;
+    int step = 1;
+    if (x < 0)
+        while (ax != x) {
+            ax += step;
+            way[step - 1] = 'E';
+            ++step;
+            ax -= step;
+            way[step - 1] = 'W';
+            ++step;
+        }
+    if (x > 0)
+    while (ax != x) {
+            ax -= step;
+            way[step - 1] = 'W';
+            ++step;
+            ax += step;
+            way[step - 1] = 'E';
+            ++step;
+        }
+    if (y < 0)
+        while (ay != y) {
+            ay += step;
+            way[step - 1] = 'N';
+            ++step;
+            ay -= step;
+            way[step - 1] = 'S';
+            ++step;
+        }
+    if (y > 0)
+        while (ay != y) {
+            ay -= step;
+            way[step - 1] = 'S';
+            ++step;
+            ay += step;
+            way[step - 1] = 'N';
+            ++step;
+            }
+        way[step - 1] = '\0';
+        return way;
+            
 
-   }
-   return res;
-   
+    
 }

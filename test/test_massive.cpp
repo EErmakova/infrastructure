@@ -1,11 +1,28 @@
 #include <gtest/gtest.h>
-#include "massive.h"
+#include "field.h"
 
-TEST(Massive, one_element) {
-    int n = 1;
-    int a[1] = { 4 };
-    int* res = Multipl(a, 1);
-    int check[1] = { 1 };
-    for (int i = 0; i < n; ++i)
-        EXPECT_EQ(res[i], check[i]);
+TEST(Field, Find_on_OX) {
+   char* way = FindWay(4,0);
+   char* res = "WEWEWEWE";
+   for (int i = 0; i < 8; ++i)
+       EXPECT_EQ(way[i], res[i]); 
+
+}
+TEST(Field, Find_on_minus_OX) {
+    char* way = FindWay(-4, 0);
+    char* res = "EWEWEWEW";
+    for (int i = 0; i < 8; ++i)
+        EXPECT_EQ(way[i], res[i]);
+}
+TEST(Field, Find_on_OY) {
+    char* way = FindWay(0, 5);
+    char* res = "SNSNSNSN";
+    for (int i = 0; i < 8; ++i)
+        EXPECT_EQ(way[i], res[i]);
+}
+TEST(Field, Find_on_minus_OY) {
+    char* way = FindWay(0, -5);
+    char* res = "NSNSNSNSNS";
+    for (int i = 0; i < 8; ++i)
+        EXPECT_EQ(way[i], res[i]);
 }
