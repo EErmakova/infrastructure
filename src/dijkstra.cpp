@@ -1,7 +1,7 @@
 #include <dijkstra.h>
 #include <set>
 #include <utility>
-#include <vector>
+
 vector<int> Dijkstra(int s, int n, vector<vector<pair<int, int>>> g) {
     if ((s < 0) || (s > n) || (g.empty())) {
         throw std::logic_error("Errors in the start values");
@@ -13,7 +13,7 @@ vector<int> Dijkstra(int s, int n, vector<vector<pair<int, int>>> g) {
     while (!q.empty()) {
         int v = q.begin()->second;
         q.erase(q.begin());
-        for (auto j = 0; j < g[v].size(); ++j) {
+        for (int j = 0; j < static_cast<int>(g[v].size()); ++j) {
             int to = g[v][j].first;
             if (to < 0)
                 break;
