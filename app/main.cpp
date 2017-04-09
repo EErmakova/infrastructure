@@ -9,7 +9,7 @@ int main() {
     { make_pair(4, 7) },
     { make_pair(-1, -1) } };
     vector<int> res = Dijkstra(0, g.size(), g);
-    for (int i = 0; i < res.size(); ++i)
+    for (int i = 0; i < static_cast<int>(res.size()); ++i)
         cout << res[i] << " ";
     cout << endl;
     vector< vector< pair<int, int> > > n =
@@ -19,7 +19,7 @@ int main() {
     { make_pair(4, 7) },
     { make_pair(-1, -1) } };
     vector<int> res1 = Dijkstra(0, n.size(), n);
-    for (int i = 0; i < res1.size(); ++i)
+    for (int i = 0; i < static_cast<int>(res1.size()); ++i)
         cout << res1[i] << " ";
     cout << endl;
 }
