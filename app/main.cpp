@@ -1,6 +1,9 @@
-#include "add.h"
 #include <iostream>
-
+#include "field.h"
+using std::cout;
+using std::endl;
 int main() {
-  std::cout << "2 + 2 = " << add(2, 2) << std::endl;
+    char* way = FindWay(-4, -40);
+    cout << way << endl;
+    return 0;
 }
