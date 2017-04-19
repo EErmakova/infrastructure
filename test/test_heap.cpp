@@ -77,8 +77,8 @@ TEST(FIVEheap, Square_brackets_cant_change_size) {
     for (int i = 0; i < 3; i++)
         a.Insert(i);
     int size1 = a.GetSize();
-    int b = a[2];
-    int size2 = a.GetSize();
+    int size2 = a[2];
+    size2 = a.GetSize();
     EXPECT_EQ(size1, size2);
 }
 TEST(FIVEheap, MinChild_cant_work_with_neg_index) {
@@ -99,8 +99,8 @@ TEST(FIVEheap, MinChild_cant_change_size) {
     a.Insert(8);
     a.Insert(3);
     int size1 = a.GetSize();
-    int r = a.MinChild(2);
-    int size2 = a.GetSize();
+    int size2 = a.MinChild(2);
+    size2 = a.GetSize();
     EXPECT_EQ(size1, size2);
 }
 TEST(FIVEheap, Can_correct_swap) {
