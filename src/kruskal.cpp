@@ -19,7 +19,6 @@ vector<pair<int, pair<int, int>>> Kruskal(vector<vector<pair<int, int>>> g) {
     for (int i = 0; i < static_cast<int>(edges.size()); ++i) {
         int vertex1 = edges[i].second.first;
         int vertex2 = edges[i].second.second;
-        int weight = edges[i].first;
         int x = Find(parent, vertex1);
         int y = Find(parent, vertex2);
         if (x != y) {
