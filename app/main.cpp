@@ -12,6 +12,7 @@ int main() {
     printf("\n");
     vector<pair<int, pair<int, int>>> res_Kruskal = Kruskal(graph1);
     Print_Spanning_Tree(res_Kruskal);
+    Write_To_Kruskal_Gv(graph1, res_Kruskal);
     printf("\n");
     printf("PRIM`S ALGORITHM\n");
     printf("ENTER THE PATH TO THE FILE: ");
@@ -23,5 +24,6 @@ int main() {
     printf("\n");
     vector<pair<int, pair<int, int>>> res_Prim = Prim(graph2, 1);
     Print_Spanning_Tree(res_Prim);
+    Write_To_Prim_Gv(graph2, res_Prim);
     return 0;
 }

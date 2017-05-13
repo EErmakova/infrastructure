@@ -128,4 +128,87 @@ void Print_Spanning_Tree(vector<pair<int, pair<int, int>>> graph) {
     }
     printf("\n");
 }
+void Write_To_Kruskal_Gv(vector<vector<pair<int, int>>> graph,
+    vector<pair<int, pair<int, int>>> spanning_tree) {
+    FILE* f = fopen("C:/Users/qq/Kate/Uni/Graphs/Kruskal_spanning_tree.txt", "w");
+    if (f == 0)
+        throw logic_error("Error! Can`t open the file!");
+    fputs("graph { \nedge[color = \"#2EB8E6\"]\n", f);
+    int n = spanning_tree.size();
+    for (int i = 0; i < n; ++i) {
+        int vertex1 = spanning_tree[i].second.first;
+        int vertex2 = spanning_tree[i].second.second;
+        int weight = spanning_tree[i].first;
+        fputc(vertex1 + 48, f);
+        fputs("--", f);
+        fputc(vertex2 + 48, f);
+        fputs("[style = \"bold\", label=\"", f);
+        fputc(weight + 48, f);
+        fputs("\"]\n", f);
+        vector<pair<int, int>>::iterator it = graph[vertex1].begin();
+        for (int i = 0; i < static_cast<int>(graph[vertex1].size()); ++i) {
+            if (graph[vertex1][i] == (make_pair(vertex2, weight))) {
+                graph[vertex1].erase(it);
+                continue;
+            }
+            ++it;
+        }
+    }
+    for (int i = 0; i < static_cast<int>(graph.size()); ++i)
+        for (int j = 0; j < static_cast<int>(graph[i].size()); ++i) {
+            int vertex1 = i;
+            int vertex2 = graph[i][j].first;
+            int weight = graph[i][j].second;;
+            fputc(vertex1 + 48, f);
+            fputs("--", f);
+            fputc(vertex2 + 48, f);
+            fputs("[color = black, label=\"", f);
+            fputc(weight + 48, f);
+            fputs("\"]\n", f);
+            fputc(vertex1 + 48, f);
+            fputs(" [shape = \"rect\", color = black]\n", f);
+            fputc(vertex2 + 48, f);
+            fputs(" [shape = \"rect\", color = black]\n", f);
+        }
+    fputs("}\n", f);
+    fclose(f);
+}
+void Write_To_Prim_Gv(vector<vector<int>> graph, vector<pair<int, pair<int, int>>> spanning_tree) {
+    FILE* f = fopen("C:/Users/qq/Kate/Uni/Graphs/Prim_spanning_tree.txt", "w");
+    if (f == 0)
+        throw logic_error("Error! Can`t open the file!");
+    fputs("graph { \nedge[color = \"#0DBD1C\"]\n", f);
+    int n = spanning_tree.size();
+    for (int i = 0; i < n; ++i) {
+        int vertex1 = spanning_tree[i].second.first;
+        int vertex2 = spanning_tree[i].second.second;
+        int weight = spanning_tree[i].first;
+        fputc(vertex1 + 48, f);
+        fputs("--", f);
+        fputc(vertex2 + 48, f);
+        fputs("[style = \"bold\", label=\"", f);
+        fputc(weight + 48, f);
+        fputs("\"]\n", f);
+        graph[vertex1][vertex2] = INF;
+        graph[vertex2][vertex1] = INF;
+    }
+    for (int i = 0; i < static_cast<int>(graph.size()); ++i)
+        for (int j = 0; j < static_cast<int>(graph[i].size()); ++j)
+            if ((graph[i][j] != INF) && (i != j)) {
+                fputc(i + 48, f);
+                fputs("--", f);
+                fputc(j + 48, f);
+                fputs("[color = black, label=\"", f);
+                fputc(graph[i][j] + 48, f);
+                fputs("\"]\n", f);
+                fputc(i + 48, f);
+                fputs(" [shape = \"rect\", color = black]\n", f);
+                fputc(j + 48, f);
+                fputs(" [shape = \"rect\", color = black]\n", f);
+                graph[j][i] = INF;
+            }
+
+    fputs("}\n", f);
+    fclose(f);
+}
 #endif  // INCLUDE_GRAPH_H_
