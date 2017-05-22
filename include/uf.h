@@ -13,10 +13,10 @@ void Union(vector<int>* parent, vector<int>* count, int p, int q) {
     int y = Find(*parent, q);
     if ((*count)[x] > (*count)[y]) {
         (*parent)[y] = x;
-        (*count)[x] += (*count)[y];
+        (*count)[x]++;
     } else {
         (*parent)[x] = y;
-        (*count)[y] += (*count)[x];
+        (*count)[y]++;
     }
 }
 #endif  // INCLUDE_UF_H_
