@@ -116,7 +116,7 @@ TEST(DIJKSTRAonAVLTree, Can_find_min_way) {
     { make_pair(3, 15), make_pair(1, 3) },
     { make_pair(4, 7) },
     { make_pair(-1, -1) } };
-    vector<int> res = Dijkstra_on_AVLTree(0, static_cast<int>(g.size()), g);
-    EXPECT_EQ(res[3], 20);
-    EXPECT_EQ(res[4], 27);
+    vector<int> res1 = Dijkstra_on_AVLTree(0, static_cast<int>(g.size()), g);
+    EXPECT_EQ(res1[3], 20);
+    EXPECT_EQ(res1[4], 27);
 }

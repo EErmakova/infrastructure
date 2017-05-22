@@ -35,11 +35,9 @@ class AVLTree {
     void RightRotation(avlnode<Type>** knot);
     void DoubleLeftRotation(avlnode<Type>** knot);
     void DoubleRightRotation(avlnode<Type>** knot);
-    avlnode<Type>* Copy(avlnode<Type>* node, avlnode<Type>* node_parent);
  public:
     avlnode<Type>* root;
     AVLTree();
-    AVLTree(const AVLTree<Type>& tree);
     ~AVLTree();
     vector<avlnode<Type>*> GetAllKnots();
     int GetSize();
@@ -60,23 +58,8 @@ AVLTree<Type>::AVLTree() {
 }
 
 template<class Type>
-AVLTree<Type>::AVLTree(const AVLTree<Type>& tree) {
-    root = Copy(tree.root, nullptr);
-}
-
-template<class Type>
 AVLTree<Type>::~AVLTree() {
     TotalErase(&root);
-}
-
-template<class Type>
-avlnode<Type>* AVLTree<Type>::Copy(avlnode<Type>* node, avlnode<Type>* node_parent) {
-    if (node == nullptr)
-        return nullptr;
-    avlnode<Type>*tmp = new avlnode<Type>(node->val, node_parent);
-    tmp->left = Copy(node->left, tmp);
-    tmp->right = Copy(node->right, tmp);
-    return tmp;
 }
 
 template<class Type>
@@ -144,19 +127,19 @@ void AVLTree<Type>::RightRotation(avlnode<Type>** knot) {
 template<class Type>
 void AVLTree<Type>::DoubleLeftRotation(avlnode<Type>** knot) {
     avlnode<Type>* tmp1 = (*knot);
-    avlnode<Type>* tmp2 = tmp1->left;
-    avlnode<Type>* tmp3 = tmp2->right;
-    avlnode<Type>* tmp4 = tmp3->left;
-    avlnode<Type>* tmp5 = tmp3->right;
-    tmp3->right = tmp1;
-    tmp3->left = tmp2;
+    avlnode<Type>* tmp2 = tmp1->right;
+    avlnode<Type>* tmp3 = tmp2->left;
+    avlnode<Type>* tmp4 = tmp3->right;
+    avlnode<Type>* tmp5 = tmp3->left;
+    tmp3->left = tmp1;
     tmp3->parent = tmp1->parent;
     tmp1->parent = tmp3;
+    tmp3->right = tmp2;
     tmp2->parent = tmp3;
-    tmp2->right = tmp4;
-    tmp1->left = tmp5;
+    tmp2->left = tmp4;
     if (tmp4 != nullptr)
         tmp4->parent = tmp2;
+    tmp1->right = tmp5;
     if (tmp5 != nullptr)
         tmp5->parent = tmp1;
     Height(tmp1);

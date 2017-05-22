@@ -97,10 +97,12 @@ void FIVEheap<Type>::Erase(int i) {
         throw logic_error("Out of range");
     val[i] = val[size - 1];
     size--;
-    if ((i != 0) && (val[i] < val[(i - 1) / d]))
-        Emertion(i);
-    else
-        Immertion(i);
+    if (size != 1) {
+        if ((i != 0) && (val[i] < val[(i - 1) / d]))
+            Emertion(i);
+        else
+            Immertion(i);
+    }
 }
 
 template<class Type>

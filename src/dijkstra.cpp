@@ -9,7 +9,7 @@ vector<int> Dijkstra_on_heap(int s, int n, vector<vector<pair<int, int>>> g) {
     q.Push(make_pair(0, s));
     while (!q.IsEmpty()) {
         int v = q.Top().second;
-        int cur_d = -q.Top().first;
+        int cur_d = q.Top().first;
         q.Pop();
         if (cur_d > d[v])
             continue;
@@ -20,7 +20,7 @@ vector<int> Dijkstra_on_heap(int s, int n, vector<vector<pair<int, int>>> g) {
             int len = g[v][j].second;
             if (d[v] + len < d[to]) {
                 d[to] = d[v] + len;
-                q.Push(make_pair(-d[to], to));
+                q.Push(make_pair(d[to], to));
             }
         }
     }
@@ -36,7 +36,7 @@ vector<int> Dijkstra_on_AVLTree(int s, int n, vector<vector<pair<int, int>>> g) 
     q.Push(make_pair(0, s));
     while (!q.IsEmpty()) {
         int v = q.Top().second;
-        int cur_d = -q.Top().first;
+        int cur_d = q.Top().first;
         q.Pop();
         if (cur_d > d[v])
             continue;
@@ -47,7 +47,7 @@ vector<int> Dijkstra_on_AVLTree(int s, int n, vector<vector<pair<int, int>>> g) 
             int len = g[v][j].second;
             if (d[v] + len < d[to]) {
                 d[to] = d[v] + len;
-                q.Push(make_pair(-d[to], to));
+                q.Push(make_pair(d[to], to));
             }
         }
     }
